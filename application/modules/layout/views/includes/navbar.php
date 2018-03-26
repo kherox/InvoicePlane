@@ -59,7 +59,7 @@
                     <ul class="dropdown-menu">
                         <li><?php echo anchor('payments/form', trans('enter_payment')); ?></li>
                         <li><?php echo anchor('payments/index', trans('view_payments')); ?></li>
-                        <li><?php echo anchor('payments/online_logs', trans('view_payment_logs')); ?></li>
+                        <!-- <li><?php //echo anchor('payments/online_logs', trans('view_payment_logs')); ?></li> -->
                     </ul>
                 </li>
 
@@ -74,6 +74,7 @@
                         <li><?php echo anchor('products/index', trans('view_products')); ?></li>
                         <li><?php echo anchor('families/index', trans('product_families')); ?></li>
                         <li><?php echo anchor('units/index', trans('product_units')); ?></li>
+                        <li><?php echo anchor('products/upload', trans('product_upload')); ?></li>
                     </ul>
                 </li>
 
@@ -146,7 +147,7 @@
                         <li><?php echo anchor('users/index', trans('user_accounts')); ?></li>
                         <li class="divider hidden-xs hidden-sm"></li>
                         <li><?php echo anchor('settings', trans('system_settings')); ?></li>
-                        <li><?php echo anchor('import', trans('import_data')); ?></li>
+                        <!-- <li><?php //echo anchor('import', trans('import_data')); ?></li> -->
                     </ul>
                 </li>
                 <li>

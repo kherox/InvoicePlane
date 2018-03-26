@@ -85,4 +85,37 @@ class Products extends Admin_Controller
         redirect('products');
     }
 
+
+    public function upload(){
+
+        if ($this->input->post('btn_submit')) {
+           
+
+                $config['upload_path']          = 'uploads/';
+                $config['allowed_types']        = 'csv';
+                $this->load->library('upload', $config);
+                 if($this->upload->do_upload('files_content')){
+                      $data =  $this->upload->data();
+                      $csv = array_map('str_getcsv', file($data["full_path"]));
+                      
+                    array_walk($csv, function(&$a) use ($csv) {
+                          $a   =  array_combine($csv[0], $a);
+                          $res = $this->run_specific_validation($a);
+                          var_dump($res);
+                         
+                    });
+
+                 }else{
+                      $error = array('error' => $this->upload->display_errors());
+                      var_dump($error);
+                 }
+               
+                
+        }
+
+         $this->layout->buffer('content', 'products/upload');
+        $this->layout->render();
+
+    }
+
 }

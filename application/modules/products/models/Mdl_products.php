@@ -125,4 +125,38 @@ class Mdl_Products extends Response_Model
         return $db_array;
     }
 
+        /**
+     * Performs validation on submitted form. By default, looks for method in
+     * child model called validation_rules, but can be forced to run validation
+     * on any method in child model which returns array of validation rules.
+     *
+     * @param null|string $validation_rules
+     *
+     * @return mixed
+     */
+    public function run_specific_validation($data)
+    {
+        
+        $validation_rules = $this->validation_rules;
+
+
+        foreach (array_keys($data) as $key) {
+            $this->form_values[$key] = $this->input->post($key);
+        }
+
+        if (method_exists($this, $validation_rules)) {
+            $this->validation_rules = $validation_rules;
+
+            $this->load->library('form_validation');
+
+            $this->form_validation->set_rules($this->$validation_rules());
+
+            $run = $this->form_validation->run();
+
+            $this->validation_errors = validation_errors();
+
+            return $run;
+        }
+    }
+
 }
