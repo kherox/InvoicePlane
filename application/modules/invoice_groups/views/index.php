@@ -1,11 +1,12 @@
 <div id="headerbar">
     <h1 class="headerbar-title"><?php _trans('invoice_groups'); ?></h1>
-
+<?php if ($user_type == 1) : ?>
     <div class="headerbar-item pull-right">
         <a class="btn btn-sm btn-primary" href="<?php echo site_url('invoice_groups/form'); ?>">
             <i class="fa fa-plus"></i> <?php _trans('new'); ?>
         </a>
     </div>
+ <?php endif ?>
 
     <div class="headerbar-item pull-right">
         <?php echo pager(site_url('invoice_groups/index'), 'mdl_invoice_groups'); ?>
@@ -47,6 +48,7 @@
                                         <i class="fa fa-edit fa-margin"></i> <?php _trans('edit'); ?>
                                     </a>
                                 </li>
+                                 <?php if ($user_type == 1) : ?>
                                 <li>
                                     <form action="<?php echo site_url('invoice_groups/delete/' . $invoice_group->invoice_group_id); ?>"
                                           method="POST">
@@ -57,6 +59,7 @@
                                         </button>
                                     </form>
                                 </li>
+                                <?php endif ?>
                             </ul>
                         </div>
                     </td>

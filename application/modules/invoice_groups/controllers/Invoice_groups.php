@@ -33,6 +33,7 @@ class Invoice_Groups extends Admin_Controller
         $this->mdl_invoice_groups->paginate(site_url('invoice_groups/index'), $page);
         $invoice_groups = $this->mdl_invoice_groups->result();
 
+        $this->layout->set('user_type', (int)$this->session->userdata("user_type"));
         $this->layout->set('invoice_groups', $invoice_groups);
         $this->layout->buffer('content', 'invoice_groups/index');
         $this->layout->render();
