@@ -86,7 +86,7 @@ class Products extends Admin_Controller
     }
 
 
-    public function upload(){
+    public function upload($id = null){
 
         if ($this->input->post('btn_submit')) {
            
@@ -95,20 +95,27 @@ class Products extends Admin_Controller
                 $config['allowed_types']        = 'csv';
                 $this->load->library('upload', $config);
                  if($this->upload->do_upload('files_content')){
-                      $data =  $this->upload->data();
-                      $csv = array_map('str_getcsv', file($data["full_path"]));
-                      
+                    $data =  $this->upload->data();
+                    $csv = array_map('str_getcsv', file($data["full_path"]));
+                    //to remove in header product_id
+                    unset($csv[0][0]);
+                    //initilisation to skip first iterate
+                    $i = 0;
                     array_walk($csv, function(&$a) use ($csv) {
-                          $a   =  array_combine($csv[0], $a);
-                          $res = $this->run_specific_validation($a);
-                          var_dump($res);
-                         
+                        //to remove product_id to column
+                        unset($a[0]);
+                        $a   =  array_combine($csv[0], $a);
+                        $res       = $this->mdl_products->run_specific_validation($a);
+                        $db_array  = $this->mdl_products->to_db_array($res);
+                        $this->mdl_products->save($id, $db_array);                         
                     });
 
                  }else{
                       $error = array('error' => $this->upload->display_errors());
                       var_dump($error);
-                 }
+                }
+                redirect('products');
+                
                
                 
         }

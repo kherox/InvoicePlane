@@ -136,27 +136,61 @@ class Mdl_Products extends Response_Model
      */
     public function run_specific_validation($data)
     {
+
         
-        $validation_rules = $this->validation_rules;
+       $validation_rules = $this->default_validation_rules;
 
-
+        $values = array_values($data);
+        $i = 0;
         foreach (array_keys($data) as $key) {
-            $this->form_values[$key] = $this->input->post($key);
+            $this->form_values[$key] = $values[$i];
+            $i++;
         }
 
-        if (method_exists($this, $validation_rules)) {
-            $this->validation_rules = $validation_rules;
+        return $this->form_values;
 
-            $this->load->library('form_validation');
+        
+        
+        // if (method_exists($this, $validation_rules)) {
+        //     $this->validation_rules = $validation_rules;
 
-            $this->form_validation->set_rules($this->$validation_rules());
+            
+        //     $this->load->library('form_validation');
 
-            $run = $this->form_validation->run();
+        //     $this->form_validation->set_rules($this->$validation_rules());
 
-            $this->validation_errors = validation_errors();
+        //     $run = $this->form_validation->run();
 
-            return $run;
+        //     $this->validation_errors = validation_errors();
+    
+
+        //     return $run;
+        // }
+    }
+
+    
+    /**
+     * Returns an array based on $_POST input matching the ruleset used to
+     * validate the form submission.
+     *
+     * @return array
+     */
+    public function to_db_array($data)
+    {
+        $db_array = [];
+
+        if($data != null){
+            $values = array_values($data);
+            $i = 0;
+
+            foreach (array_keys($data ) as $key ) {
+                $db_array[$key] = $values[$i];
+                $i++;
+            }
+            return $db_array;
         }
+
+       
     }
 
 }
