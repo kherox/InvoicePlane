@@ -1,6 +1,6 @@
 <div id="headerbar">
     <h1 class="headerbar-title"><?php _trans('users'); ?></h1>
-<?php if ($user_types_num == 1) : ?>
+<?php if ($user_types_num == 1) : ?>  
     <div class="headerbar-item pull-right">
         <a class="btn btn-sm btn-primary" href="<?php echo site_url('users/form'); ?>">
             <i class="fa fa-plus"></i> <?php _trans('new'); ?>
