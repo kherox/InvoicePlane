@@ -1,12 +1,12 @@
 <div id="headerbar">
     <h1 class="headerbar-title"><?php _trans('users'); ?></h1>
-
+<?php if ($user_types_num == 1) : ?>
     <div class="headerbar-item pull-right">
         <a class="btn btn-sm btn-primary" href="<?php echo site_url('users/form'); ?>">
             <i class="fa fa-plus"></i> <?php _trans('new'); ?>
         </a>
     </div>
-
+<?php endif ?>
     <div class="headerbar-item pull-right">
         <?php echo pager(site_url('users/index'), 'mdl_users'); ?>
     </div>
@@ -43,29 +43,30 @@
                                     <i class="fa fa-list fa-margin"></i> <?php _trans('assigned_clients'); ?>
                                 </a>
                             <?php endif; ?>
-                            <a class="btn btn-default dropdown-toggle"
-                               data-toggle="dropdown" href="#">
-                                <i class="fa fa-cog"></i> <?php _trans('options'); ?>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="<?php echo site_url('users/form/' . $user->user_id); ?>">
-                                        <i class="fa fa-edit fa-margin"></i> <?php _trans('edit'); ?>
-                                    </a>
-                                </li>
-                                <?php if ($user->user_id !== 1) { ?>
+                            <?php if ($user->user_type != 1) : ?>
+                                <a class="btn btn-default dropdown-toggle"
+                                data-toggle="dropdown" href="#">
+                                    <i class="fa fa-cog"></i> <?php _trans('options'); ?>
+                                </a>
+                                <ul class="dropdown-menu">
                                     <li>
-                                        <form action="<?php echo site_url('users/delete/' . $user->user_id); ?>"
-                                              method="POST">
-                                            <?php _csrf_field(); ?>
-                                            <button type="submit" class="dropdown-button"
-                                                    onclick="return confirm('<?php _trans('delete_record_warning'); ?>');">
-                                                <i class="fa fa-trash-o fa-margin"></i> <?php _trans('delete'); ?>
-                                            </button>
-                                        </form>
+                                        <a href="<?php echo site_url('users/form/' . $user->user_id); ?>">
+                                            <i class="fa fa-edit fa-margin"></i> <?php _trans('edit'); ?>
+                                        </a>
                                     </li>
-                                <?php } ?>
-                            </ul>
+                            
+                                        <li>
+                                            <form action="<?php echo site_url('users/delete/' . $user->user_id); ?>"
+                                                method="POST">
+                                                <?php _csrf_field(); ?>
+                                                <button type="submit" class="dropdown-button"
+                                                        onclick="return confirm('<?php _trans('delete_record_warning'); ?>');">
+                                                    <i class="fa fa-trash-o fa-margin"></i> <?php _trans('delete'); ?>
+                                                </button>
+                                            </form>
+                                        </li>
+                                </ul>
+                            <?php endif ?>
                         </div>
                     </td>
                 </tr>

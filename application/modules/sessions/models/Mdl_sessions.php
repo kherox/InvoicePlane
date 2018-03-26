@@ -26,8 +26,11 @@ class Mdl_Sessions extends CI_Model
 
         $query = $this->db->get('ip_users');
 
+       
         if ($query->num_rows()) {
             $user = $query->row();
+
+
 
             $this->load->library('crypt');
 

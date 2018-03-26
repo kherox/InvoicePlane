@@ -21,6 +21,9 @@ class Base_Controller extends MX_Controller
     /** @var bool */
     public $ajax_controller = false;
 
+    /** @var admin user default type */
+    public $admin_user_type = 1;
+
     /**
      * Base_Controller constructor.
      */

@@ -58,6 +58,7 @@ class Layout extends MX_Controller
             $this->view_data[$args[0]] = $args[1];
         }
 
+
         return $this;
     }
 

@@ -23,12 +23,21 @@ class Mdl_Users extends Response_Model
     /**
      * @return array
      */
-    public function user_types()
+    public function user_types($id = null)
     {
-        return array(
+        
+        if ($id == 1 || $id == null ) {
+            return array(
             '1' => trans('administrator'),
-            '2' => trans('guest_read_only')
-        );
+            '2' => trans('guest_read_only'),
+            '3' => trans('editor')
+           );
+        }else{
+            return array(
+            '3' => trans('editor')
+           );
+        }
+       
     }
 
     public function default_select()

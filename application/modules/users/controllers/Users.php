@@ -31,9 +31,18 @@ class Users extends Admin_Controller
     public function index($page = 0)
     {
         $this->mdl_users->paginate(site_url('users/index'), $page);
-        $users = $this->mdl_users->result();
+        //$users = [];
+        // if ($this->session->userdata("user_type") != $this->admin_user_type) {
+        //    $users = $this->mdl_users->get_by_id((int)$this->session->userdata("user_id"));
+        // } else {
+        //     $users = $this->mdl_users->result();
+        // }
+
+        $users = $this->mdl_users->result(); //
+        
 
         $this->layout->set('users', $users);
+        $this->layout->set('user_types_num', (int)$this->session->userdata("user_type"));
         $this->layout->set('user_types', $this->mdl_users->user_types());
         $this->layout->buffer('content', 'users/index');
         $this->layout->render();
@@ -57,6 +66,9 @@ class Users extends Admin_Controller
             // Update the session details if the logged in user edited his account
             if ($this->session->userdata('user_id') == $id) {
                 $new_details = $this->mdl_users->get_by_id($id);
+
+
+              
 
                 $session_data = array(
                     'user_type' => $new_details->user_type,
@@ -133,10 +145,13 @@ class Users extends Admin_Controller
             }
         }
 
+        
+
+
         $this->layout->set(
             array(
                 'id' => $id,
-                'user_types' => $this->mdl_users->user_types(),
+                'user_types' => $this->mdl_users->user_types((int)$this->session->userdata('user_type')),
                 'user_clients' => $this->mdl_user_clients->where('ip_user_clients.user_id', $id)->get()->result(),
                 'custom_fields' => $custom_fields,
                 'custom_values' => $custom_values,
