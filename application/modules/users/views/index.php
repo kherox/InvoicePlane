@@ -54,7 +54,7 @@
                                             <i class="fa fa-edit fa-margin"></i> <?php _trans('edit'); ?>
                                         </a>
                                     </li>
-                            
+                                     <?php if ($user->user_type == 1) : ?>
                                         <li>
                                             <form action="<?php echo site_url('users/delete/' . $user->user_id); ?>"
                                                 method="POST">
@@ -65,6 +65,7 @@
                                                 </button>
                                             </form>
                                         </li>
+                                     <?php endif ?>
                                 </ul>
                             <?php endif ?>
                         </div>
