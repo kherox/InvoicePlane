@@ -54,4 +54,5 @@ All security vulnerabilities will be promptly addressed.
 and their usage is restricted! For more information visit invoiceplane.com/license-copyright_
 
 
-Please if you using this repo : set before SETUP_COMPLETED in to ipconfig.php file to false
+Please if you using this repo : 
+    rename ipconfig.php.example to ipconfig 
