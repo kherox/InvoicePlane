@@ -119,14 +119,7 @@
             <?php } ?>
 
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="http://docs.invoiceplane.com/" target="_blank"
-                       class="tip icon" title="<?php _trans('documentation'); ?>"
-                       data-placement="bottom">
-                        <i class="fa fa-question-circle"></i>
-                        <span class="visible-xs">&nbsp;<?php _trans('documentation'); ?></span>
-                    </a>
-                </li>
+                
 
                 <li class="dropdown">
                     <a href="#" class="tip icon dropdown-toggle" data-toggle="dropdown"
@@ -146,8 +139,10 @@
                         <li><?php echo anchor('payment_methods/index', trans('payment_methods')); ?></li>
                         <li><?php echo anchor('tax_rates/index', trans('tax_rates')); ?></li>
                         <li><?php echo anchor('users/index', trans('user_accounts')); ?></li>
-                        <li class="divider hidden-xs hidden-sm"></li>
-                        <li><?php echo anchor('settings', trans('system_settings')); ?></li>
+                        <?php if ($this->session->userdata('user_type')== 1) :  ?>
+                            <li class="divider hidden-xs hidden-sm"></li>
+                            <li><?php echo anchor('settings', trans('system_settings')); ?></li>
+                        <?php endif ?>
                         <!-- <li><?php //echo anchor('import', trans('import_data')); ?></li> -->
                     </ul>
                 </li>

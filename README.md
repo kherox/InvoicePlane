@@ -52,3 +52,6 @@ All security vulnerabilities will be promptly addressed.
 
 > _The name 'InvoicePlane' and the InvoicePlane logo are both copyright by Kovah.de and InvoicePlane.com
 and their usage is restricted! For more information visit invoiceplane.com/license-copyright_
+
+
+Please if you using this repo : set before SETUP_COMPLETED in to ipconfig.php file to false
