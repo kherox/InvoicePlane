@@ -42,8 +42,8 @@
             <a href="<?php echo site_url('setup'); ?>" class="btn btn-success">
                 <i class="fa fa-cogs"></i> Setup
             </a>
-            <a href="https://wiki.invoiceplane.com/" class="btn btn-info">
-                <i class="fa fa-info-circle"></i> Get Help
+            <a href="http://dvoyd.com" class="btn btn-info">
+                <i class="fa fa-info-circle"></i> Dvoyd
             </a>
         </div>
     </div>

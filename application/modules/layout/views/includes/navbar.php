@@ -74,7 +74,7 @@
                         <li><?php echo anchor('products/index', trans('view_products')); ?></li>
                         <li><?php echo anchor('families/index', trans('product_families')); ?></li>
                         <li><?php echo anchor('units/index', trans('product_units')); ?></li>
-                        <li><?php echo anchor('products/upload', trans('product_upload')); ?></li>
+                        <!-- <li><?php //echo anchor('products/upload', trans('product_upload')); ?></li> -->
                     </ul>
                 </li>
 
